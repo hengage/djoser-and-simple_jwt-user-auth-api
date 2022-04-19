@@ -124,3 +124,45 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+DJOSER = {
+    'SEND_CONFIRMATION_EMAIL': True,
+    'LOGIN_FIELD': 'email',
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'HIDE_USERS': False,
+    'SERIALIZERS': {
+        'user': 'users.serializers.ReadUserSerializer',
+        # 'user': 'djoser.serializers.UserSerializer',
+
+        # 'user_create': 'djoser.serializers.UserCreateSerializer',
+        'user_create': 'users.serializers.UserRegistrationSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+        'password_reset': 'djoser.serializers.SendEmailResetSerializer',
+        'password_reset_confirm': 'djoser.serializers.PasswordResetConfirmSerializer',
+        'password_reset_confirm_retype': 'djoser.serializers.PasswordResetConfirmRetypeSerializer',
+        'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+
+        
+        'token': 'djoser.serializers.TokenSerializer',
+        'token_create': 'djoser.serializers.TokenCreateSerializer',
+    },
+    'PERMISSIONS': {
+        'activation': ['rest_framework.permissions.AllowAny'],
+        
+        # 'set_password': ['rest_framework.permissions.CurrentUserOrAdmin'],
+        
+        # 'set_username': ['rest_framework.permissions.CurrentUserOrAdmin'],
+        # 'user_delete': ['rest_framework.permissions.CurrentUserOrAdmin'],
+        # 'user': ['rest_framework.permissions.CurrentUserOrAdmin'],
+        # 'user': ['rest_framework.permissions.AllowAny'],
+        'user_list': ['rest_framework.permissions.AllowAny'],
+        'token_create': ['rest_framework.permissions.AllowAny'],
+        'token_destroy': ['rest_framework.permissions.IsAuthenticated'],
+    }
+}
