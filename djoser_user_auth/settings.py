@@ -132,9 +132,9 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         
     ),
-    "DEFAULT_PERMISSION_CLASSES": {
+    "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.AllowAny",
-    }
+    ),
 }
 
 SIMPLE_JWT = {
