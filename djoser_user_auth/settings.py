@@ -160,6 +160,7 @@ DJOSER = {
         # 'user_create': 'djoser.serializers.UserCreateSerializer',
         'user_create': 'users.serializers.UserRegistrationSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
+        'current_user': 'djoser.serializers.UserSerializer', # Get own user data.
         'password_reset': 'djoser.serializers.SendEmailResetSerializer',
         'password_reset_confirm': 'djoser.serializers.PasswordResetConfirmSerializer',
         'password_reset_confirm_retype': 'djoser.serializers.PasswordResetConfirmRetypeSerializer',
