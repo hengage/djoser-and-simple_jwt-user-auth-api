@@ -34,12 +34,13 @@ INSTALLED_APPS = [
     #Local apps
     'users.apps.UsersConfig',
 
-    # 3rd-party apps
+    # Third party apps
     'rest_framework',
     'rest_framework.authtoken',
     "rest_framework_simplejwt.token_blacklist",
     'djoser',
     'rest_framework_simplejwt',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -185,3 +186,16 @@ DJOSER = {
     }
 }
 
+LOGIN_URL = 'auth/jwt/create'
+# LOGIN_URL = 'admin/login/'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    'USE_SESSION_AUTH': True
+}
