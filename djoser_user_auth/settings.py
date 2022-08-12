@@ -1,7 +1,8 @@
 from pathlib import Path
 import sys, os
 
-import django_heroku
+import django_heroku, dj_database_url
+from decouple import config
 
 # djangorestframework
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -204,3 +205,7 @@ SWAGGER_SETTINGS = {
 }
 
 django_heroku.settings(locals())
+
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
